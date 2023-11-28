@@ -1,0 +1,3 @@
+Adafruit CircuitPython 8.2.8 on 2023-11-16; Metro MIMXRT1011 with IMXRT1011DAE5A
+Board ID:adafruit_metro_m7_1011_sd
+UID:80E8715DD7495818EB00005002004200
