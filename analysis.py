@@ -1,22 +1,37 @@
 # analyze temp data
 
+import os 
 import numpy
 from matplotlib import pyplot as plt
 import pandas as pd
 
-num = int(input("Enter run number: "))
-df = pd.read_csv(f'data/data_{num}.csv',delimiter=",",header=0,usecols=['timestamp','temperature','relative_humidity'])
+csv_dir = "/home/ryott/Projects/metro/data"
 
-print(df)
+
+dataframes = []
+
+
+for filename in os.listdir(csv_dir):
+    if filename.endswith(".csv"):
+        file_path = os.path.join(csv_dir, filename)
+        df = pd.read_csv(file_path, delimiter=",",header=0,usecols=['timestamp','temperature','relative_humidity'])
+        dataframes.append(df)
+
+
+data = pd.concat(dataframes, ignore_index=True)
+
+print(data)
 
 
 
 
 plt.figure('Temperature Vs. Time')
 plt.plot(
-    df['timestamp'],
-    df['temperature']
+    (data['timestamp']/3600),
+    data['temperature']
 )
+plt.xlabel("Hours")
+plt.ylabel("Temp C")
 plt.grid()
 plt.show()
 
